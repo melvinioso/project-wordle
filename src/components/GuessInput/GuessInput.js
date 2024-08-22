@@ -2,7 +2,6 @@ import React, { useState } from "react"
 
 function GuessInput({ guessResults, setGuessResults }) {
   const [guess, setGuess] = useState("")
-  
 
   function handleSubmit(event) {
     event.preventDefault()
