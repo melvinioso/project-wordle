@@ -1,26 +1,27 @@
 import React, { useState } from "react"
 
-function GuessInput({ guessResults, setGuessResults, disabled }) {
-  const [guess, setGuess] = useState("")
+function GuessInput({ handleSubmitGuess, gameStatus }) {
+  const [tentativeGuess, setTentativeGuess] = useState("")
 
   function handleSubmit(event) {
     event.preventDefault()
-    setGuessResults([...guessResults, guess])
-    setGuess("")
+    handleSubmitGuess(tentativeGuess)
+    setTentativeGuess("")
   }
 
   return (
     <div>
-      <form className="guess-input-wrapper" onSubmit={(e) => handleSubmit(e)}>
+      <form className="guess-input-wrapper" onSubmit={handleSubmit}>
         <label htmlFor="guess-input">Enter guess:</label>
         <input
+          required
+          disabled={gameStatus !== "running"}
           id="guess-input"
           type="text"
-          value={guess}
-          onChange={(e) => setGuess(e.target.value.toUpperCase())}
+          value={tentativeGuess}
+          onChange={(e) => setTentativeGuess(e.target.value.toUpperCase())}
           pattern="[A-Za-z]{5}"
-          title="5 letters only...no more, no less"
-          disabled={disabled}
+          title="5 letter words only"
         />
       </form>
     </div>
