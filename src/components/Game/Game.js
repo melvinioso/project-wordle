@@ -32,7 +32,6 @@ function Game() {
 
   return (
     <>
-      {gameStatus}
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput gameStatus={gameStatus} handleSubmitGuess={handleSubmitGuess} />
       {gameStatus === "won" && <WonBanner numOfGuesses={guesses.length} />}
